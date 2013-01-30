@@ -114,8 +114,8 @@ def find_default_files():
     req_files = list(chain.from_iterable(glob.glob(pattern) for pattern in GLOB_PATTERNS))
     files = list()
     try:
-        req_files.remove(DEFAULT_REQUIREMENTS_FILE)
         files += [DEFAULT_REQUIREMENTS_FILE]
+        req_files.remove(DEFAULT_REQUIREMENTS_FILE)
     except ValueError:
         pass
 

@@ -14,7 +14,7 @@ def get_dependencies():
 
 setup(
     name='pip-tools-win',
-    version='0.0.1',
+    version='0.0.3',
     url='https://github.com/smokingkapor/pip-tools-win',
     license='BSD',
     author='Kapor Zhu',
