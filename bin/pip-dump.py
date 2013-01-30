@@ -53,8 +53,8 @@ def parse_args():
 
 
 def pip_partition(lines):
-    no_split_match = lambda line: line != SPLIT_PATTERN
-    split_match = lambda line: line == SPLIT_PATTERN
+    no_split_match = lambda line: line.strip() != SPLIT_PATTERN
+    split_match = lambda line: line.strip() == SPLIT_PATTERN
     first = takewhile(no_split_match, lines)
     second = dropwhile(split_match, dropwhile(no_split_match, lines))
     return (list(first), list(second))
@@ -83,10 +83,24 @@ def rewrite(filename, lines):
 
 
 def dump_requirements(files):
-    _, tmpfile = tempfile.mkstemp()
-    check_call('cat %s | sort -fu > %s' % (' '.join(files), tmpfile))
+    #_, tmpfile = tempfile.mkstemp()
+    #check_call('cat %s | sort -fu > %s' % (' '.join(files), tmpfile))
+    lines = []
+    for file in files:
+        if os.path.exists(file):
+            for line in open(file).readlines():
+                if not line.endswith('\n'):
+                    line += '\n'
+                lines.append(line)
+    lines.sort()
+    tmpfile = 'pip-tools-win-tmp.txt'
+    f = open(tmpfile, 'w+')
+    f.writelines(lines)
+    f.close()
+
     _, new = pip_info(tmpfile)
-    check_call('rm %s' % tmpfile)
+    #check_call('rm %s' % tmpfile)
+    check_call('del %s' % tmpfile)
     append_lines(new, files[0])
 
     for filename in files:

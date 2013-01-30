@@ -21,10 +21,10 @@ setup(
     author_email='smokingkapor@gmail.com',
     description=__doc__.strip('\n'),
     #packages=[],
-    scripts=['bin/pip-review.py', 'bin/pip-dump.py'],
+    scripts=['bin/pip-review.py', 'bin/pip-dump.py', 'bin/pip-review.bat', 'bin/pip-dump.bat'],
     #include_package_data=True,
     zip_safe=False,
-    platforms='any',
+    platforms='windows',
     install_requires=get_dependencies(),
     classifiers=[
         # As from http://pypi.python.org/pypi?%3Aaction=list_classifiers
