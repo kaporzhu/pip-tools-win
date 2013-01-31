@@ -1,1 +1,1 @@
-python %~dp0\pip-review.py %1
+python %~dp0\pip-review.py %*
